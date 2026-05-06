@@ -23,9 +23,9 @@ struct Seg {
         int m = l + r >> 1;
         pd(p);
         if (x < m) {
-            st(p >> 1, l, m, x, v);
+            st(p << 1, l, m, x, v);
         } else {
-            st(p >> 1 | 1, m, r, x, v);
+            st(p << 1 | 1, m, r, x, v);
         }
         pu(p);
     }
@@ -77,31 +77,34 @@ struct Seg {
 
         int m = l + r >> 1;
         pd(p);
-        int res = ff(p << 1 | 1, m, r, x, y, f);
+        int res = fl(p << 1 | 1, m, r, x, y, f);
         if (res == -1) {
-            res = ff(p << 1, l, m, x, y, f);
+            res = fl(p << 1, l, m, x, y, f);
         }
         return res;
     }
 };
 
 struct T {
-    int cnt = 0;
-    void ap(const T& t) { cnt += t.cnt; }
+    int x = 0;
+    void ap(const T& t) { x += t.x; }
 };
+
 struct I {
-    int op = 0;
-    int cl = 0;
+    bool ok = false;
+    int x = 0;
 
     void ap(const T& t) {
-        if (t.cnt & 1) {
-            std::swap(op, cl);
-        }
+        x += t.x;
     }
 };
 
 I operator+(const I& a, const I& b) {
-    I res = {a.op + b.op, a.cl + b.cl};
+    if (!a.ok && !b.ok) return I();
+    if (!a.ok) return b;
+    if (!b.ok) return a;
+
+    I res = {1};
     return res;
 }
 
