@@ -23,8 +23,6 @@ void pre(int n) {
 }
 
 std::vector<int> minp, primes;
-//primes: 保存所有 ≤ n 的质数。
-// minp [x]: 记录数 x 的最小质因子(minimum prime factor)。
 void sieve(int n) {
     minp.assign(n + 1, 0);
     primes.clear();
@@ -46,3 +44,5 @@ void sieve(int n) {
         }
     }
 }
+//primes: 保存所有 ≤ n 的质数。
+// minp [x]: 记录数 x 的最小质因子(minimum prime factor)。

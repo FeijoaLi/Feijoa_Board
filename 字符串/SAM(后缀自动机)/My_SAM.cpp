@@ -51,3 +51,13 @@ struct SAM {
         return w;
     }
 };
+
+/*
+    int N = sam.cl.size();
+    std::vector<int> c(N + 1, 0), idx(N + 1, 0);
+    for (int i = 0; i < N; i++) c[i] = sam.l[i];
+    for (int i = 1; i < N; i++) c[i] += c[i - 1];
+    for (int i = 0; i < N; i++) idx[--c[sam.l[i]]] = i;
+
+    计数排序
+*/

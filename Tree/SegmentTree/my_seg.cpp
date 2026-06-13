@@ -1,8 +1,12 @@
 template <class I, class T>
 struct Seg {
-    int n;
     std::vector<T> t;
     std::vector<I> i;
+
+    void init(int n) {
+        t.assign(n << 2, T());
+        i.assign(n << 2, I());
+    }
 
     void ap(int p, const T& v) {
         i[p].ap(v);
@@ -132,7 +136,5 @@ seg.rq(1, 0, n, x, y);
 seg.ra(1, 0, n, x, y, v);
 
 Seg<I, T> seg;
-seg.n = n;
-seg.i.assign(n << 2, I());
-seg.t.assign(n << 2, T());
+seg.init(n);
 */
